@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "the-mod",
+	"id": "localizeddamage",
 	"version": "${version}",
-	"name": "The Mod",
+	"name": "Localized Damage",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -12,20 +12,20 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/the-mod/icon.png",
+	"icon": "assets/localizeddamage/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"name.themod.ExampleMod"
+			"name.localizeddamage.ExampleMod"
 		],
 		"client": [
-			"name.themod.ExampleModClient"
+			"name.localizeddamage.ExampleModClient"
 		]
 	},
 	"mixins": [
-		"the-mod.mixins.json",
+		"localizeddamage.mixins.json",
 		{
-			"config": "the-mod.client.mixins.json",
+			"config": "localizeddamage.client.mixins.json",
 			"environment": "client"
 		}
 	],
