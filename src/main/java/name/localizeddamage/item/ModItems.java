@@ -1,4 +1,4 @@
-package name.localizeddamage.items;
+package name.localizeddamage.item;
 
 import name.localizeddamage.LocalizedDamageMod;
 import net.minecraft.item.Item;
@@ -12,6 +12,6 @@ public class ModItems {
         return Registry.register(Registries.ITEM, new Identifier(LocalizedDamageMod.MOD_ID, name), item);
     }
     public static void registerModItems() {
-        System.out.println("Registering items for " + LocalizedDamageMod.MOD_ID);
+        LocalizedDamageMod.LOGGER.info("Registering " + LocalizedDamageMod.MOD_ID + " Items");
     }
 }
