@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"name.localizeddamage.ExampleMod"
+			"name.localizeddamage.LocalizedDamageMod"
 		],
 		"client": [
-			"name.localizeddamage.ExampleModClient"
+			"name.localizeddamage.LocalizedDamageModClient"
 		]
 	},
 	"mixins": [
