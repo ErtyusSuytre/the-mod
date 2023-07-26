@@ -1,5 +1,6 @@
 package name.localizeddamage;
 
+import name.localizeddamage.item.ModItemGroups;
 import name.localizeddamage.item.ModItems;
 import name.localizeddamage.block.ModBlocks;
 import net.fabricmc.api.ModInitializer;
@@ -16,6 +17,7 @@ public class LocalizedDamageMod implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		ModItems.registerModItems();
+		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
 	}
 }

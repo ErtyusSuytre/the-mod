@@ -2,13 +2,10 @@ package name.localizeddamage.item;
 
 import name.localizeddamage.LocalizedDamageMod;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -24,11 +21,8 @@ public class ModItems {
                         .meat()
                         .alwaysEdible()
                         .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 20*10), 1f)
-                .build())));
-
-    private static void addItemsToModItemGroup(FabricItemGroupEntries entries) {
-        entries.add(PENIS);
-    }
+                        .build())
+    ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LocalizedDamageMod.MOD_ID, name), item);
@@ -36,7 +30,5 @@ public class ModItems {
 
     public static void registerModItems() {
         LocalizedDamageMod.LOGGER.info("Registering " + LocalizedDamageMod.MOD_ID + " Items");
-
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(ModItems::addItemsToModItemGroup);
     }
 }
