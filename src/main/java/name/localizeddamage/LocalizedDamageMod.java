@@ -1,5 +1,6 @@
 package name.localizeddamage;
 
+import name.localizeddamage.entity.ModEntities;
 import name.localizeddamage.item.ModItemGroups;
 import name.localizeddamage.item.ModItems;
 import name.localizeddamage.block.ModBlocks;
@@ -19,5 +20,6 @@ public class LocalizedDamageMod implements ModInitializer {
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
+		ModEntities.registerModEntities();
 	}
 }
