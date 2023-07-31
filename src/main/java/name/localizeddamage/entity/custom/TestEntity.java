@@ -1,4 +1,4 @@
-package name.localizeddamage.entity;
+package name.localizeddamage.entity.custom;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
