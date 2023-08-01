@@ -27,7 +27,5 @@ public class LocalizedDamageMod implements ModInitializer {
 
 		GeckoLib.initialize();
 		FabricDefaultAttributeRegistry.register(ModEntities.TEST, TestEntity.setAttributes());
-
-		ModEntities.registerModEntities();
 	}
 }
