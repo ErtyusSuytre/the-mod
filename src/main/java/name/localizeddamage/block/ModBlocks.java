@@ -11,6 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
+    public static final Block TRAP = registerBlock("trap", new Block(FabricBlockSettings.create()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
