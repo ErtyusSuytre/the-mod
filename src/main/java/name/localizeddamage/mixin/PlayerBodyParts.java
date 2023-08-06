@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import name.localizeddamage.LocalizedDamageMod;
 import name.localizeddamage.body.BodyPart;
 import name.localizeddamage.body.PlayerBody;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +13,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Objects;
 
 import static java.lang.String.valueOf;
 
@@ -40,5 +44,16 @@ public class PlayerBodyParts {
             playerBody.getBodyPart(bodyPart).setHealth(nbt.getFloat(bodyPart.name()));
 //            LocalizedDamageMod.LOGGER.info(bodyPart.name() + " read value: " + valueOf(playerBody.getBodyPart(bodyPart).getHealth()));
         }
+    }
+
+    @ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+    public float handleHealthChange(float amount, DamageSource source) {
+//        LocalizedDamageMod.LOGGER.info("Took " + amount + " damage from " + source);
+        if(Objects.equals(source.getName(), "outOfWorld") || Objects.equals(source.getName(), "genericKill")) {
+            return amount;
+        }
+        // TODO: Not sure how to distribute general mob damage
+        playerBody.getBodyPart(PlayerBody.Part.TORSO).damage(amount);
+        return 0;
     }
 }
