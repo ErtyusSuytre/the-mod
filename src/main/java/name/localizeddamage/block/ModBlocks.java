@@ -4,13 +4,21 @@ import name.localizeddamage.LocalizedDamageMod;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 
-public class ModBlocks {
+import javax.swing.text.html.BlockView;
+
+public class ModBlocks{
+    public static final Block TRAP = registerBlock("trap", new TrapBlock(FabricBlockSettings.create()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
