@@ -1,8 +1,6 @@
 package name.localizeddamage.mixin;
 
 import com.mojang.authlib.GameProfile;
-import name.localizeddamage.LocalizedDamageMod;
-import name.localizeddamage.body.BodyPart;
 import name.localizeddamage.body.PlayerBody;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,8 +15,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Objects;
-
-import static java.lang.String.valueOf;
 
 @Mixin(PlayerEntity.class)
 public class PlayerBodyParts {

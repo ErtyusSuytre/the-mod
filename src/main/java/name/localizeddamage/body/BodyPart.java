@@ -1,9 +1,5 @@
 package name.localizeddamage.body;
 
-import name.localizeddamage.LocalizedDamageMod;
-
-import static java.lang.Float.max;
-
 public abstract class BodyPart {
     public BodyPart(float maxHealth, float health) {
         setHealth(health);
