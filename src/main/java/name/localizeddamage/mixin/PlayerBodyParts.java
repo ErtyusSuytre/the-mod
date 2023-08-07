@@ -47,9 +47,17 @@ public class PlayerBodyParts {
 //        LocalizedDamageMod.LOGGER.info("Took " + amount + " damage from " + source);
         if(Objects.equals(source.getName(), "outOfWorld") || Objects.equals(source.getName(), "genericKill")) {
             return amount;
+        } else if (Objects.equals(source.getName(), "anvil") &&
+                Objects.equals(source.getName(), "fallingBlock") &&
+                Objects.equals(source.getName(), "fallingStalactite") &&
+                Objects.equals(source.getName(), "flyIntoWall")) {
+            playerBody.getBodyPart(PlayerBody.Part.HEAD).damage(amount);
+        } else if (Objects.equals(source.getName(), "fall") && Objects.equals(source.getName(), "fall")) {
+            playerBody.getBodyPart(PlayerBody.Part.LEFT_LEG).damage(amount);
+            playerBody.getBodyPart(PlayerBody.Part.RIGHT_LEG).damage(amount);
+        } else {
+            playerBody.getBodyPart(PlayerBody.Part.TORSO).damage(amount);
         }
-        // TODO: Not sure how to distribute general mob damage
-        playerBody.getBodyPart(PlayerBody.Part.TORSO).damage(amount);
         return 0;
     }
 }
