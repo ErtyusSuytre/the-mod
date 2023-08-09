@@ -1,6 +1,12 @@
 package name.localizeddamage.body;
 
+import net.minecraft.entity.player.PlayerEntity;
+
 public class PlayerBody {
+    public PlayerBody(PlayerEntity player) {
+        this.player = player;
+    }
+    PlayerEntity player;
     public enum Part {
         HEAD,
         LEFT_ARM,
@@ -10,14 +16,18 @@ public class PlayerBody {
         RIGHT_LEG
     }
 
-    protected final BodyPart[] bodyParts = {
-            new HeadBodyPart(20.0f, 20.0f),
-            new LeftArmBodyPart(20.0f, 20.0f),
-            new RightArmBodyPart(20.0f, 20.0f),
-            new TorsoBodyPart(20.0f, 20.0f),
-            new LeftLegBodyPart(20.0f, 20.0f),
-            new RightLegBodyPart(20.0f, 20.0f),
-    };
+    public void initBody() {
+        bodyParts = new BodyPart[]{
+                new HeadBodyPart(20.0f, 20.0f, player),
+                new LeftArmBodyPart(20.0f, 20.0f, player),
+                new RightArmBodyPart(20.0f, 20.0f, player),
+                new TorsoBodyPart(20.0f, 20.0f, player),
+                new LeftLegBodyPart(20.0f, 20.0f, player),
+                new RightLegBodyPart(20.0f, 20.0f, player),
+        };
+    }
+
+    protected BodyPart[] bodyParts;
 
     public BodyPart[] getBodyParts() {
         return bodyParts;

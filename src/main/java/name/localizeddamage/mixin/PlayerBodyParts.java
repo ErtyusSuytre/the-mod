@@ -23,7 +23,8 @@ public class PlayerBodyParts {
 
     @Inject(method = "<init>*", at = @At("RETURN"))
     public void addBody(World world, BlockPos pos, float yaw, GameProfile gameProfile, CallbackInfo callbackInfo) {
-        playerBody = new PlayerBody();
+        playerBody = new PlayerBody((PlayerEntity) (Object) this);
+        playerBody.initBody();
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("RETURN"))
@@ -45,18 +46,19 @@ public class PlayerBodyParts {
     @ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     public float handleHealthChange(float amount, DamageSource source) {
 //        LocalizedDamageMod.LOGGER.info("Took " + amount + " damage from " + source);
-        if(Objects.equals(source.getName(), "outOfWorld") || Objects.equals(source.getName(), "genericKill")) {
+        if(Objects.equals(source.getName(), "outOfWorld") ||
+                Objects.equals(source.getName(), "genericKill")) {
             return amount;
-        } else if (Objects.equals(source.getName(), "anvil") &&
-                Objects.equals(source.getName(), "fallingBlock") &&
-                Objects.equals(source.getName(), "fallingStalactite") &&
+        } else if (Objects.equals(source.getName(), "anvil") ||
+                Objects.equals(source.getName(), "fallingBlock") ||
+                Objects.equals(source.getName(), "fallingStalactite") ||
                 Objects.equals(source.getName(), "flyIntoWall")) {
-            playerBody.getBodyPart(PlayerBody.Part.HEAD).damage(amount);
-        } else if (Objects.equals(source.getName(), "fall") && Objects.equals(source.getName(), "fall")) {
-            playerBody.getBodyPart(PlayerBody.Part.LEFT_LEG).damage(amount);
-            playerBody.getBodyPart(PlayerBody.Part.RIGHT_LEG).damage(amount);
+            playerBody.getBodyPart(PlayerBody.Part.HEAD).damage(amount, source);
+        } else if (Objects.equals(source.getName(), "fall")) {
+            playerBody.getBodyPart(PlayerBody.Part.LEFT_LEG).damage(amount, source);
+            playerBody.getBodyPart(PlayerBody.Part.RIGHT_LEG).damage(amount, source);
         } else {
-            playerBody.getBodyPart(PlayerBody.Part.TORSO).damage(amount);
+            playerBody.getBodyPart(PlayerBody.Part.TORSO).damage(amount, source);
         }
         return 0;
     }

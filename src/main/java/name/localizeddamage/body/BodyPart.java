@@ -1,10 +1,17 @@
 package name.localizeddamage.body;
 
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.event.GameEvent;
+
 public abstract class BodyPart {
-    public BodyPart(float maxHealth, float health) {
+    public BodyPart(float maxHealth, float health, PlayerEntity player) {
         setHealth(health);
         setMaxHealth(maxHealth);
+        this.player = player;
     }
+
+    private PlayerEntity player;
 
     private float maxHealth;
     private float health;
@@ -46,9 +53,19 @@ public abstract class BodyPart {
         return this.partKills;
     }
 
-    public float damage(float amount) {
+    public boolean damage(float amount, DamageSource source) {
         float newHealth = health - amount;
         setHealth(newHealth);
-        return Float.max(0.0f, newHealth);
+        return true;
+    }
+
+//    public abstract void damageArmor(float amount, DamageSource source);
+//
+//    public abstract void addEffects();
+
+    public void kill(DamageSource source) {
+        player.getDamageTracker().onDamage(source, 20.0f);
+        player.setHealth(0.0f);
+        player.emitGameEvent(GameEvent.ENTITY_DAMAGE);
     }
 }
