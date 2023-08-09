@@ -27,12 +27,12 @@ public class TrapBlock extends Block {
     }
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        LocalizedDamageMod.LOGGER.info(entity.getClass().getName().toString());
+//        LocalizedDamageMod.LOGGER.info(entity.getClass().getName().toString());
         if (entity.getClass().getName().contains("PlayerEntity")){
             LivingEntity livingEntity = (LivingEntity) entity;
             livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200));
             String stringListStatus = livingEntity.getStatusEffects().toString();
-            LocalizedDamageMod.LOGGER.info(stringListStatus);
+//            LocalizedDamageMod.LOGGER.info(stringListStatus);
             if (stringListStatus.contains("slowness")){
                 if (stringListStatus.contains("blindness")){
                     entity.kill();
