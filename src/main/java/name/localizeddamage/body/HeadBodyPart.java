@@ -13,7 +13,6 @@ public class HeadBodyPart extends BodyPart{
     public boolean damage(float amount, DamageSource source) {
         super.damage(amount, source);
         if (getHealth() == 0) {
-            System.out.println("Head Hurt");
             kill(source);
         }
         return true;
